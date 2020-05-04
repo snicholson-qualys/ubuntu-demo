@@ -1,6 +1,6 @@
 
 # Use the official image as a parent image.
-FROM ubuntu:1604
+FROM ubuntu:16.04
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
