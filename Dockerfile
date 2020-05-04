@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 RUN apt -y update
 RUN apt-get -y upgrade
 RUN apt install -y apache2
-COPY ./public-html/ /usr/local/apache2/htdocs/
+# COPY ./public-html/ /usr/local/apache2/htdocs/
 RUN systemctl start apache2
 RUN systemctl enable apache2
 RUN usermod -a -G apache ec2-user
