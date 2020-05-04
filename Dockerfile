@@ -2,7 +2,6 @@
 # Use the official image as a parent image.
 FROM httpd:2.4
 
-COPY ./html/ /usr/local/apache2/htdocs/
 RUN apt -y update
 RUN apt-get -y upgrade
 RUN mkdir /var/www/html
