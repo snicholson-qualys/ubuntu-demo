@@ -1,13 +1,13 @@
 
 # Use the official image as a parent image.
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
-RUN apt-get -y update
+RUN apt -y update
 RUN apt-get -y upgrade
-RUN apt-get install -y httpd
+RUN apt install -y apache2
 COPY ./public-html/ /usr/local/apache2/htdocs/
-RUN systemctl start httpd
-RUN systemctl enable httpd
+RUN systemctl start apache2
+RUN systemctl enable apache2
 RUN usermod -a -G apache ec2-user
 RUN chown -R ec2-user:apache /var/www
 RUN chmod 2775 /var/www
