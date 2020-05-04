@@ -4,8 +4,6 @@ FROM httpd:2.4
 
 RUN apt -y update
 RUN apt-get -y upgrade
-RUN mkdir /var/www/html
-RUN cd /var/www/html
 
 RUN echo "<!DOCTYPE html> \
 <html lang="en"> \
@@ -16,6 +14,6 @@ RUN echo "<!DOCTYPE html> \
 <body> \
     <h1>Learn Docker With Us</h1>   \
 </body> \
-</html>" > /var/www/html/index.html
+</html>" > /usr/local/apache2/htdocs/index.html
 
 EXPOSE 80
