@@ -13,6 +13,7 @@ RUN echo "<!DOCTYPE html> \
 </head> \
 <body> \
     <h1>Learn Docker With Us</h1>   \
+    <h2>Scanned with Qualys</h2>    \
 </body> \
 </html>" > /usr/local/apache2/htdocs/index.html
 
