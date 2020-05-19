@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 
 RUN apt -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install apache2
+RUN apt-get -y install apache2 perl mime-support apache2-bin apache2-utils ssl-cert
 RUN systemctl start apache2.service
 RUN echo "<!DOCTYPE html> \
 <html lang="en"> \
