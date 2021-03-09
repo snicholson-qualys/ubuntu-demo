@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:xenial-20200706
 
 # Install dependencies
 RUN apt-get update && \
