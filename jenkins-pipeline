@@ -1,0 +1,49 @@
+pipeline {
+    environment {
+        registry = "snicholsonqualys/demo-builds"
+        registryCredential = 'dockerhub'
+    }
+
+    agent any
+
+    stages {
+        stage('Cloning Git') {
+            steps {
+                git 'https://github.com/snicholson-qualys/ubuntu-demo.git'
+            }
+        }
+
+        stage('Building Image') {
+            steps{
+                script {
+                    customImage = docker.build registry + ":fail"
+                    buildNum = registry + ":fail"
+                    //def IMAGE_ID = sh(script: "docker images -q $buildNum")
+                    IMAGE_ID = sh(script: "docker images -q '$buildNum'", returnStdout: true).trim()
+                    env.IMAGE_ID = IMAGE_ID
+                }
+            }
+        }
+        stage('Access with Qualys') {
+            steps{
+                script{
+                    getImageVulnsFromQualys imageIds: env.IMAGE_ID, useGlobalConfig:true
+                }
+            }
+        }
+        stage('Push to Docker') {
+            steps{
+                script{
+                    docker.withRegistry( '', registryCredential ) {
+                    customImage.push()
+                    }
+                }
+            }
+        }
+    }
+    post('Remove Unused docker image'){
+            always{
+                sh "docker rmi $registry:fail"
+            }
+        }
+}
