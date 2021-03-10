@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20200619
+FROM ubuntu:xenial-20181005
 
 # Install dependencies
 RUN apt-get update && \
